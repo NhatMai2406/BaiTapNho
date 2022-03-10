@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+	div.sach{width: 200px;height: 300px;margin: 4px;border-style:solid ;display: inline-block}
+        div.sach img{width: 200px;height: 190px}
+</style>
+<script src='jquery-3.6.0.min.js'></script>
+<script>
+			function F1(){
+				$.ajax({
+					url:'https://6214b3b689fad53b1f1bef4c.mockapi.io/sach',
+					type:'GET',
+					dataType:'json',
+					success:function(dataReturn){
+						console.log(dataReturn);
+						$('#result1').html('');
+						$.each(dataReturn, function(k,v){
+							var s = `<div class ="sach"> 
+							${v.masach} - ${v.tensach} - ${v.gia}<hr>
+							  <img src="${v.hinh}">
+                    </div>`;
+								$('#result1').append(s);
+
+						});
+					}
+				})
+			}
+		</script>
+
+</head>
+ 	<body>
+        Search : <input type=text id='kw'>
+        <input type='button' value='Search' onClick='F1()'>
+        <div id=result1></div><hr>
+        <div id=result2></div>
+
+	</body>
+
+ </html>
